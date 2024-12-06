@@ -10,7 +10,7 @@ const server = http.createServer(app);
 //https://jeopardy-buzzer.netlify.app
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://jeopardy-buzzer.netlify.app",
     methods: ["GET", "POST"],
   },
 });
@@ -35,9 +35,6 @@ io.on("connection", (socket) => {
     console.log(vault)
   })
 })
-
-
-
 
 server.listen(process.env.PORT || 3001, () => {
   console.log("SERVER RUNNING");
