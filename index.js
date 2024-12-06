@@ -7,10 +7,10 @@ const cors = require("cors");
 app.use(cors());
 
 const server = http.createServer(app);
-
+//https://jeopardy-buzzer.netlify.app
 const io = new Server(server, {
   cors: {
-    origin: "https://jeopardy-buzzer.netlify.app",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
   },
 });
@@ -26,8 +26,13 @@ io.on("connection", (socket) => {
     io.emit("list", name)
   });
 
+  socket.on("reset",()=>{
+    io.emit("initiateReset")
+  })
+
   socket.on("disconnect", ()=>{
     vault--;
+    console.log(vault)
   })
 })
 
